@@ -49,8 +49,6 @@ dim(my.df)
 my.df$ATIVO <- as.character(my.df$ATIVO)
 my.df$NOME_EMPRESA <- as.character(my.df$NOME_EMPRESA)
 my.df$TIPO <- as.factor(my.df$TIPO)
-#my.df$QTD_TEORICA <- as.numeric(my.df$QTD_TEORICA)
-#my.df$PORC_PART <- as.numeric(my.df$PORC_PART)
 glimpse(my.df)
 
 
@@ -61,6 +59,6 @@ head(my.df)
 tail(my.df)
 
 #exportando
-#write_xlsx(x = my.df, path = "D:/public/investimentos/0_others_db/b3_carteira_teorica/ibov.xlsx")
+#write_xlsx(x = my.df, path = "../data/ibov.xlsx")
 write_csv(x = my.df, path = 'D:/public/investimentos/0_others_db/b3_carteira_teorica/ibov.csv')
 write_csv(x = my.df, path = '../data/ibov.csv')
