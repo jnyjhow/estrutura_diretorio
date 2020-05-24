@@ -1,16 +1,4 @@
 #####
-#limpando o cash/workspace
-rm(list = ls())
-
-#limpando todas as figuras/graficos
-graphics.off()
-
-#definindo pasta de trabalho
-my.d <- dirname(rstudioapi::getActiveDocumentContext()$path)
-setwd(my.d)
-getwd()
-
-#####
 #instalar pacotes
 
 #####
@@ -26,22 +14,24 @@ risco <- series_ipeadata("40940", periodicity = "D")$serie_40940
 colnames(risco) = c('date', 'risco')
 class(risco)
 
-my.df <- risco
-glimpse(my.df)
-names(my.df)
-class(my.df)
+my.df.risco <- risco
+glimpse(my.df.risco)
+names(my.df.risco)
+class(my.df.risco)
 
 #renomenado as colunas do df
-names(my.df) <- c('DATA', 'RISCO_PAIS')
-names(my.df)
-dim(my.df)
+names(my.df.risco) <- c('DATA', 'RISCO_PAIS')
+names(my.df.risco)
+dim(my.df.risco)
 
 #primeiros elementos do dataframe
-head(my.df)
+#head(my.df.risco)
 
 #ultimos elementos do dataframe
-tail(my.df)
+#tail(my.df.risco)
 
 #exportando
-write_csv(x = my.df, path = 'D:/public/investimentos/0_others_db/db_embi.csv')
-write_csv(x = my.df, path = '../data/embi.csv')
+write_csv(x = my.df.risco, path = 'D:/public/investimentos/0_others_db/db_embi.csv')
+write_csv(x = my.df.risco, path = 'result/embi.csv')
+
+print("import_embi = OK")

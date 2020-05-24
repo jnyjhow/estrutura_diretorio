@@ -1,16 +1,4 @@
 #####
-#limpando o cash/workspace
-rm(list = ls())
-
-#limpando todas as figuras/graficos
-graphics.off()
-
-#definindo pasta de trabalho
-my.d <- dirname(rstudioapi::getActiveDocumentContext()$path)
-setwd(my.d)
-getwd()
-
-#####
 #instalar pacotes
 
 #####
@@ -32,40 +20,42 @@ l.out <- readHTMLTable(my.url, encoding = 'UTF-8')
 
 #checando conteudos
 glimpse(l.out)
-class(l.out$ctl00_contentPlaceHolderConteudo_grdResumoCarteiraTeorica_ctl00)
+ibov <- l.out$ctl00_contentPlaceHolderConteudo_grdResumoCarteiraTeorica_ctl00
+class(ibov)
 
-my.df <- tbl_df(l.out$ctl00_contentPlaceHolderConteudo_grdResumoCarteiraTeorica_ctl00)
-glimpse(my.df)
-names(my.df)
-class(my.df)
+my.df.ibov <- tbl_df(ibov)
+glimpse(my.df.ibov)
+names(my.df.ibov)
+class(my.df.ibov)
 
 #renomenado oas colunas do df
-names(my.df) <- c('ATIVO', 'NOME_EMPRESA', 'TIPO', 'QTD_TEORICA', 'PORC_PART')
-names(my.df)
-dim(my.df)
+names(my.df.ibov) <- c('ATIVO', 'NOME_EMPRESA', 'TIPO', 'QTD_TEORICA', 'PORC_PART')
+names(my.df.ibov)
+dim(my.df.ibov)
 
 #tratando/convertendo variaveis
-my.df$ATIVO <- as.character(my.df$ATIVO)
-my.df$NOME_EMPRESA <- as.character(my.df$NOME_EMPRESA)
-my.df$TIPO <- as.factor(my.df$TIPO)
-my.df$QTD_TEORICA <- parse_double(str_replace_all(my.df$QTD_TEORICA, '[.]', ''),
+my.df.ibov$ATIVO <- as.character(my.df.ibov$ATIVO)
+my.df.ibov$NOME_EMPRESA <- as.character(my.df.ibov$NOME_EMPRESA)
+my.df.ibov$TIPO <- as.factor(my.df.ibov$TIPO)
+my.df.ibov$QTD_TEORICA <- parse_double(str_replace_all(my.df.ibov$QTD_TEORICA, '[.]', ''),
                                   locale = locale(decimal_mark = ',',
                                                   grouping_mark = '.')
                                   )
-my.df$PORC_PART <- parse_double(str_replace_all(my.df$PORC_PART, '[,]', ','),
+my.df.ibov$PORC_PART <- parse_double(str_replace_all(my.df.ibov$PORC_PART, '[,]', ','),
                                 locale = locale(decimal_mark = ',',
                                                 grouping_mark = '.')
                                 )
-glimpse(my.df)
+glimpse(my.df.ibov)
 
 #primeiros elementos do dataframe
-head(my.df)
+#head(my.df.ibov)
 
 #ultimos elementos do dataframe
-tail(my.df)
+#tail(my.df.ibov)
 
 #exportando
 #write_xlsx(x = my.df, path = "../data/ibov.xlsx")
-write_csv(x = my.df, path = 'D:/public/investimentos/0_others_db/b3_carteira_teorica/ibov.csv')
-write_csv(x = my.df, path = '../data/ibov.csv')
+write_csv(x = my.df.ibov, path = 'D:/public/investimentos/0_others_db/b3_carteira_teorica/ibov.csv')
+write_csv(x = my.df.ibov, path = 'result/ibov.csv')
 
+print("import_carteira_teorica_ibov = OK")
