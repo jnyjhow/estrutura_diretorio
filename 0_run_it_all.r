@@ -24,7 +24,7 @@ my.r.files <- list.files(path='r_functions',
 #carregando todas as funcoes em R
 sapply(my.r.files, source)
 
-#importando todas as bases de dados
+#importando todas as bases de dados e tratando variaveis
 source('1_import_and_clear_data.R')
 
 #rodando modelos e gerando resultados
