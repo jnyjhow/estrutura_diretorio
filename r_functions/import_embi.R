@@ -8,7 +8,6 @@ graphics.off()
 #definindo pasta de trabalho
 my.d <- dirname(rstudioapi::getActiveDocumentContext()$path)
 setwd(my.d)
-#setwd('D:/2_projetos_r/')
 getwd()
 
 #####
@@ -21,7 +20,7 @@ library(dplyr)
 library(readr)
 library(ecoseries)
 
-#impotando da do IPEAData
+#importando dados do IPEAData
 risco <- series_ipeadata("40940", periodicity = "D")$serie_40940
 #renomenado oas colunas do df
 colnames(risco) = c('date', 'risco')
@@ -32,7 +31,7 @@ glimpse(my.df)
 names(my.df)
 class(my.df)
 
-#renomenado oas colunas do df
+#renomenado as colunas do df
 names(my.df) <- c('DATA', 'RISCO_PAIS')
 names(my.df)
 dim(my.df)
